@@ -24,7 +24,7 @@ app.post('/upload', upload, (req, res) => {
     throw new Error('no file');
   } else {
     findShit.findTheShit(req.file.path, (err, diff, row) => {
-      if(err != null){
+      if (err != null) {
         res.render("fuck");
         return;
       }
@@ -38,6 +38,21 @@ app.post('/upload', upload, (req, res) => {
       });
     });
   }
+});
+
+app.get('/search', (req, res) => {
+  console.log("f");
+  res.type("text/html");
+  res.render('search', {
+    searches: [
+      {
+        title: "word",
+      },
+      {
+        title: 'wrod'
+      }
+    ]
+  });
 });
 
 console.log("Listening on port 8080");
