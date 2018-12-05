@@ -9,6 +9,7 @@
   "private": false,
   "dependencies": {
     "JSONStream": "^1.3.5",
+    "body-parser": "^1.18.3",
     "chalk": "^2.4.1",
     "cookie-parser": "^1.4.3",
     "dhash-image": "^1.2.1",

@@ -4,13 +4,14 @@ const multer = require('multer');
 const findShit = require("./findShit.js");
 const upload = multer({ dest: 'public/uploads' }).single('photo');
 const exphbs = require('express-handlebars');
+const search = require('./search.js');
 
 const app = express();
 
 app.engine('handlebars', exphbs({}));
 app.set('view engine', 'handlebars');
 app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -40,18 +41,19 @@ app.post('/upload', upload, (req, res) => {
   }
 });
 
-app.get('/search', (req, res) => {
-  console.log("f");
-  res.type("text/html");
-  res.render('search', {
-    searches: [
-      {
-        title: "word",
-      },
-      {
-        title: 'wrod'
-      }
-    ]
+app.post('/search', (req, res) => {
+  search.doSearch(req.body.search, (data) => {
+    console.log(data);
+    res.render('search', {
+      searches: [
+        {
+          title: "daksd"
+        },
+        {
+          title: "asd"
+        }
+      ]
+    });
   });
 });
 
